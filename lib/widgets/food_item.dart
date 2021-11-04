@@ -1,7 +1,16 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
+import 'package:food_app1/model/breakfast_model.dart';
+import 'package:food_app1/screens/detail_screen.dart';
 import 'package:gap/gap.dart';
+import 'package:page_transition/page_transition.dart';
 
 class FoodItem extends StatelessWidget {
+  final Breakfast breakfast;
+
+  FoodItem({required this.breakfast});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,28 +25,33 @@ class FoodItem extends StatelessWidget {
           ),*/
           Align(
             alignment: Alignment.center,
-            child: Container(
-              height: 340,
-              width: 180,
-              decoration: BoxDecoration(
-                color: Color(0xff00adf2),
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
-                    offset: Offset(20.0,10.0),
-                    blurRadius: 5,
-                    spreadRadius: 2
+            child: GestureDetector(
+              onTap: (){
+                Navigator.push(context,
+                    PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: DetailScreen(breakfast: breakfast,),
+                    duration:const Duration(milliseconds: 800),
+                      curve: Curves.elasticIn,),
+                );
+              },
+              child: Container(
+                height: 340,
+                width: 180,
+                decoration:  BoxDecoration(
+                  color: Color(0xffe1e2ff),
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xffededed),
+                      offset: Offset(20.0,10.0),
+                      blurRadius: 5,
+                      spreadRadius: 2
 
-                  ),
-                 /* BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(0.0,5.0),
-                      blurRadius: 1,
-                      spreadRadius: 1
+                    ),
+                  ]
 
-                  )*/
-                ]
+                ),
 
               ),
             ),
@@ -51,7 +65,16 @@ class FoodItem extends StatelessWidget {
               width: 50,
               decoration: BoxDecoration(
                 color: Color(0xffff0000),
-                shape: BoxShape.circle
+                shape: BoxShape.circle,
+                  boxShadow: [
+              BoxShadow(
+              color: Color(0xffe8a6a8),
+                offset: Offset(5.0,10.0),
+                blurRadius: 8,
+                spreadRadius: 0
+
+            ),
+            ]
               ),
               child: Icon(Icons.favorite,
                 size: 18,
@@ -62,15 +85,27 @@ class FoodItem extends StatelessWidget {
           Positioned(
             top: 30,
               right: 1,
-              child: Container(
-            width: 150,
-            height: 150,
-            decoration: BoxDecoration(
-                color: Colors.green,
-                shape: BoxShape.circle
-            ),
+              child: Hero(
+                tag: 'hero${breakfast.id}',
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  decoration: const BoxDecoration(
+                  //color: Colors.white,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+            BoxShadow(
+            color: Color(0xffC7C8E1),
+                    offset: Offset(5.0,15.0),
+                    blurRadius: 20,
+                    spreadRadius: 2
 
-          )),
+                ),]
+            ),
+                  child: Image.asset(breakfast.image2,
+                    fit: BoxFit.contain,),
+                ),
+              )),
 
           Positioned(
             top: 200,
@@ -92,20 +127,23 @@ class FoodItem extends StatelessWidget {
                     ),
                     Gap(16),
 
-                    RichText(
-                      text: const TextSpan(
-                          text: 'Blue\n',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: 'Salad',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w700),
-                            )
-                          ]),
+                    Hero(
+                      tag: 'text${breakfast.id}',
+                      child: RichText(
+                        text: const TextSpan(
+                            text: 'Blue\n',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: 'Salad',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w700),
+                              )
+                            ]),
+                      ),
                     ),
 
 
@@ -114,10 +152,14 @@ class FoodItem extends StatelessWidget {
                 Gap(24),
                 Container(
                   width: 155,
-                    child: Text('A salad is a dish consisting of a mixture of small pieces of food, usually vegetables')),
+                    child: Text(breakfast.subtitle)),
               ],
             ),
-          )
+          ),
+
+
+
+
         ],
       ),
     );
