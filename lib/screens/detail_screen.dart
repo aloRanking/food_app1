@@ -74,17 +74,25 @@ class _DetailScreenState extends State<DetailScreen> {
 
 
             Container(
+
+
+
               //padding:const EdgeInsets.only(left: 24),
               child: Stack(
                 children: [
                   Container(),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      height: 260,
+                      //color: Colors.red,
+                    ),
+                  ),
                   const Positioned(
-                    right: 30,
-                    bottom: 10,
+                    right: 10,
+                    bottom: 65,
                     height: 20,
                     width: 50,
-
-
                     child: DecoratedBox(
                         decoration:  BoxDecoration(
 
@@ -92,8 +100,8 @@ class _DetailScreenState extends State<DetailScreen> {
                         boxShadow: [
                           BoxShadow(
                               color: Color(0xffBEBDCB),
-                              //offset: Offset(0,10),
-                              blurRadius: 45,
+                              offset: Offset(0,10),
+                              blurRadius: 20,
                               spreadRadius: 45
                           )
                         ]
@@ -124,14 +132,16 @@ class _DetailScreenState extends State<DetailScreen> {
 
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
+                  Positioned(
+                    right: -80,
                     child: Hero(
                       tag: 'hero${widget.breakfast.id}',
-                      child: SizedBox(
+                      child: Container(
                         height: 230,
-                        //width: 250,
-                        child: Image.asset(widget.breakfast.image,
+                        width: 230,
+
+
+                        child: Image.asset(widget.breakfast.image2,
 
                           ),
                       ),
@@ -143,7 +153,6 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
             ),
 
-            Gap(28),
 
             Expanded(
               child: Container(
