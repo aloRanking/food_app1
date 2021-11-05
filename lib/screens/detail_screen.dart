@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -49,8 +50,7 @@ class _DetailScreenState extends State<DetailScreen> {
               padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 28),
               child: Row(
                 children: [
-                  Hero(
-                    tag: 'text${widget.breakfast.id}',
+                  FadeIn(
                     child: RichText(
                       text: const TextSpan(
                           text: 'Blue ',
@@ -110,26 +110,29 @@ class _DetailScreenState extends State<DetailScreen> {
                   Positioned(
                     left: 24,
                     top: 30,
-                    child: Column(
+                    child: FadeInLeft(
+                      delay: Duration(milliseconds: 300),
+                      child: Column(
 
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        FoodInfo(
-                          icon: Icons.access_time_outlined,
-                          info: '32 MINS',
-                        ),
-                        Gap(16),
-                        FoodInfo(
-                          icon: Icons.person,
-                          info: '2 PEOPLE',
-                        ),
-                        Gap(16),
-                        FoodInfo(
-                          icon: Icons.sports_soccer_outlined,
-                          info: '23 CALORIES',
-                        ),
-                      ],
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          FoodInfo(
+                            icon: Icons.access_time_outlined,
+                            info: '32 MINS',
+                          ),
+                          Gap(16),
+                          FoodInfo(
+                            icon: Icons.person,
+                            info: '2 PEOPLE',
+                          ),
+                          Gap(16),
+                          FoodInfo(
+                            icon: Icons.sports_soccer_outlined,
+                            info: '23 CALORIES',
+                          ),
+                        ],
 
+                      ),
                     ),
                   ),
                   Positioned(
@@ -155,117 +158,122 @@ class _DetailScreenState extends State<DetailScreen> {
 
 
             Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                decoration: BoxDecoration(
-                  color:Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(32),
-                    topLeft: Radius.circular(32),
-
-                  )
-                ),
-                child: Column(
-                  children: [
-                    Gap(12),
-                    Container(
-                      width: 150,
-                        height: 5,
-                      decoration: BoxDecoration(
-                        color: Color(0xffF5F5F5),
-                        borderRadius:BorderRadius.circular(16),
-
-                      ),
-                    ),
-                    Gap(16),
-                    Row(
-                      children: [
-                        Text('Directions',style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18,
-                          letterSpacing: 1.2
-                        ),),
-
-                      ],
-                    ),
-
-                    Gap(16),
-
-                    Table(columnWidths: const {
-                      0: FlexColumnWidth(1),
-                      1: FlexColumnWidth(9),
-
-                    },
-                      children: [
-
-                        TableRow(
-
-                            children: [
-
-                              Column(
-                                children: [
-                                  Gap(4),
-                                  Container(
-                                    height: 8,
-                                    width: 8,
-                                    decoration: BoxDecoration(
-                                        color: Color(0xffff0000),
-                                        shape: BoxShape.circle
-                                    ),
-
-                                  ),
-                                ],
-                              ),
-
-                              Column(
-                                children: [
-                                  Text(direction1,
-                                  style: TextStyle(
-                                    color: Color(0xffA5ABC2),
-                                    fontSize: 14,
-                                    height: 1.2
-                                  ),),
-                                  Gap(16),
-                                ],
-                              )
-
-
-                            ]
-                        ),
-
-                        TableRow(
-
-                            children: [
-
-                              Column(
-                                children: [
-                                  Gap(4),
-                                  Container(
-                                    height: 8,
-                                    width: 8,
-                                    decoration: BoxDecoration(
-                                        color: Color(0xffff0000),
-                                        shape: BoxShape.circle
-                                    ),
-
-                                  ),
-                                ],
-                              ),
-
-                              Text(direction2,
-                                style: TextStyle(
-                                    color: Color(0xffA5ABC2),
-                                    fontSize: 14,
-                                    height: 1.2
-                                ),)
-
-
-                            ]
-                        )
-                      ],
+              child: FadeInUp(
+                from: 70,
+                duration: Duration(milliseconds: 1000),
+                delay: Duration(milliseconds: 500),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  decoration: BoxDecoration(
+                    color:Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(32),
+                      topLeft: Radius.circular(32),
 
                     )
-                  ],
+                  ),
+                  child: Column(
+                    children: [
+                      Gap(12),
+                      Container(
+                        width: 150,
+                          height: 5,
+                        decoration: BoxDecoration(
+                          color: Color(0xffF5F5F5),
+                          borderRadius:BorderRadius.circular(16),
+
+                        ),
+                      ),
+                      Gap(16),
+                      Row(
+                        children: [
+                          Text('Directions',style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
+                            letterSpacing: 1.2
+                          ),),
+
+                        ],
+                      ),
+
+                      Gap(16),
+
+                      Table(columnWidths: const {
+                        0: FlexColumnWidth(1),
+                        1: FlexColumnWidth(9),
+
+                      },
+                        children: [
+
+                          TableRow(
+
+                              children: [
+
+                                Column(
+                                  children: [
+                                    Gap(4),
+                                    Container(
+                                      height: 8,
+                                      width: 8,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xffff0000),
+                                          shape: BoxShape.circle
+                                      ),
+
+                                    ),
+                                  ],
+                                ),
+
+                                Column(
+                                  children: [
+                                    Text(direction1,
+                                    style: TextStyle(
+                                      color: Color(0xffA5ABC2),
+                                      fontSize: 14,
+                                      height: 1.2
+                                    ),),
+                                    Gap(16),
+                                  ],
+                                )
+
+
+                              ]
+                          ),
+
+                          TableRow(
+
+                              children: [
+
+                                Column(
+                                  children: [
+                                    Gap(4),
+                                    Container(
+                                      height: 8,
+                                      width: 8,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xffff0000),
+                                          shape: BoxShape.circle
+                                      ),
+
+                                    ),
+                                  ],
+                                ),
+
+                                Text(direction2,
+                                  style: TextStyle(
+                                      color: Color(0xffA5ABC2),
+                                      fontSize: 14,
+                                      height: 1.2
+                                  ),)
+
+
+                              ]
+                          )
+                        ],
+
+                      )
+                    ],
+                  ),
                 ),
               ),
             )
